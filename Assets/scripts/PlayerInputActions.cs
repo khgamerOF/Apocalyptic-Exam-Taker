@@ -100,33 +100,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EastButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""41431c7e-d9e4-43c7-a962-6da8b6eeaa48"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""WestButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""e3486c96-534c-4f26-8270-f84e21670666"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""NorthButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""dd8b919f-ee81-447c-abb0-d59ba75d6723"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -151,72 +124,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""SouthButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""40fe4072-494e-462a-85a3-528477897345"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EastButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a472b7f3-8c77-423b-86f6-c1aedeecafe0"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EastButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4b4f7bb0-5177-468d-98e8-47ab4c471dde"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WestButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""711ca258-e4c2-4c80-b539-117a6dba4edf"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WestButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c66689aa-a811-4071-9163-8ff8cdc891ae"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NorthButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c2ada432-c81a-4499-8c9c-353cd9687fb2"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NorthButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,9 +133,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_SouthButton = m_Player.FindAction("SouthButton", throwIfNotFound: true);
-        m_Player_EastButton = m_Player.FindAction("EastButton", throwIfNotFound: true);
-        m_Player_WestButton = m_Player.FindAction("WestButton", throwIfNotFound: true);
-        m_Player_NorthButton = m_Player.FindAction("NorthButton", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -310,9 +214,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_SouthButton;
-    private readonly InputAction m_Player_EastButton;
-    private readonly InputAction m_Player_WestButton;
-    private readonly InputAction m_Player_NorthButton;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -328,18 +229,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/SouthButton".
         /// </summary>
         public InputAction @SouthButton => m_Wrapper.m_Player_SouthButton;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/EastButton".
-        /// </summary>
-        public InputAction @EastButton => m_Wrapper.m_Player_EastButton;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/WestButton".
-        /// </summary>
-        public InputAction @WestButton => m_Wrapper.m_Player_WestButton;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/NorthButton".
-        /// </summary>
-        public InputAction @NorthButton => m_Wrapper.m_Player_NorthButton;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -369,15 +258,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SouthButton.started += instance.OnSouthButton;
             @SouthButton.performed += instance.OnSouthButton;
             @SouthButton.canceled += instance.OnSouthButton;
-            @EastButton.started += instance.OnEastButton;
-            @EastButton.performed += instance.OnEastButton;
-            @EastButton.canceled += instance.OnEastButton;
-            @WestButton.started += instance.OnWestButton;
-            @WestButton.performed += instance.OnWestButton;
-            @WestButton.canceled += instance.OnWestButton;
-            @NorthButton.started += instance.OnNorthButton;
-            @NorthButton.performed += instance.OnNorthButton;
-            @NorthButton.canceled += instance.OnNorthButton;
         }
 
         /// <summary>
@@ -392,15 +272,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SouthButton.started -= instance.OnSouthButton;
             @SouthButton.performed -= instance.OnSouthButton;
             @SouthButton.canceled -= instance.OnSouthButton;
-            @EastButton.started -= instance.OnEastButton;
-            @EastButton.performed -= instance.OnEastButton;
-            @EastButton.canceled -= instance.OnEastButton;
-            @WestButton.started -= instance.OnWestButton;
-            @WestButton.performed -= instance.OnWestButton;
-            @WestButton.canceled -= instance.OnWestButton;
-            @NorthButton.started -= instance.OnNorthButton;
-            @NorthButton.performed -= instance.OnNorthButton;
-            @NorthButton.canceled -= instance.OnNorthButton;
         }
 
         /// <summary>
@@ -448,26 +319,5 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSouthButton(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "EastButton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEastButton(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "WestButton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnWestButton(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "NorthButton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNorthButton(InputAction.CallbackContext context);
     }
 }
