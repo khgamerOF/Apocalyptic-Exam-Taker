@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class InputController : MonoBehaviour
 {
     public static InputController instance;
+
     private PlayerInput playerInput;
     private PlayerInputActions playerInputActions;
 
