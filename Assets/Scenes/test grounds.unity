@@ -794,14 +794,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Player Controls
       m_Flags: 4
-    - m_Name: up
-      m_Id: f20c6a09-ff72-479d-a264-661e5b290ea7
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Controls
-      m_Flags: 8
     - m_Name: down
       m_Id: 0e99eae0-6066-4a32-9955-7a92c89f39ef
       m_Path: <Keyboard>/downArrow
