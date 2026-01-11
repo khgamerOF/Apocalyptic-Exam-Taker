@@ -1,37 +1,33 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public float moveSpeed = 5f;
-    public InputAction playerControls;
+    [Header("Player Component Refrences")]
+    [SerializeField] Rigidbody2D rb;
 
-    Vector2 moveDirection = Vector2.zero;
+    [Header("Player Settings")]
+    [SerializeField] float speed = 5f;
+    [SerializeField] float jumpingPower = 8f;
 
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
+    [Header("Grounding")]
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] Transform groundCheck;
 
-    private void OnDisable()
-    {
-        playerControls.Disable();
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private float horizontal;
 
-    // Update is called once per frame
-    void Update()
-    {
-        moveDirection = playerControls.ReadValue<Vector2>();
-    }
-    
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
     }
+
+    #region PLAYER_CONTROLS
+    public void Move(InputAction.CallbackContext context)
+    {
+        horizontal = context.ReadValue<Vector2>().x;
+    }
+    #endregion
+
 }
