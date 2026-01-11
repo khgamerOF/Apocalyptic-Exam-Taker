@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpingPower = 8f;
     [SerializeField] float sprintMultiplier = 1.5f;
     private bool isSprinting;
+    [SerializeField] float doubleJumpMultiplier = 0.5f;
+    private bool canDoubleJump;
 
     [Header("Grounding")]
     [SerializeField] LayerMask groundLayer;
@@ -24,6 +26,10 @@ public class PlayerController : MonoBehaviour
     {
         float currentSpeed = isSprinting ? speed * sprintMultiplier : speed;
         rb.linearVelocity = new Vector2(horizontal * currentSpeed, rb.linearVelocity.y);
+        if (isGrounded())
+        {
+            canDoubleJump = true;
+        }
     }
 
     #region PLAYER_CONTROLS
@@ -34,9 +40,22 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && isGrounded())
+        if (!context.performed) return;
+
+        // Ground jump
+        if (isGrounded())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            canDoubleJump = true;
+        }
+        // Double jump
+        else if (canDoubleJump)
+        {
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                jumpingPower * doubleJumpMultiplier
+            );
+            canDoubleJump = false;
         }
     }
 
