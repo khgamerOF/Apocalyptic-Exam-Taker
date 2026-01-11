@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] float speed = 5f;
     [SerializeField] float jumpingPower = 8f;
+    [SerializeField] float sprintMultiplier = 1.5f;
+    private bool isSprinting;
 
     [Header("Grounding")]
     [SerializeField] LayerMask groundLayer;
@@ -20,7 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        float currentSpeed = isSprinting ? speed * sprintMultiplier : speed;
+        rb.linearVelocity = new Vector2(horizontal * currentSpeed, rb.linearVelocity.y);
     }
 
     #region PLAYER_CONTROLS
@@ -35,6 +38,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
+    }
+
+    public void Sprint(InputAction.CallbackContext context)
+    {
+        isSprinting = context.ReadValueAsButton();
     }
 
     private bool isGrounded()
