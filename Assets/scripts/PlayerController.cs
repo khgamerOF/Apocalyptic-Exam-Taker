@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Component Refrences")]
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] float flashInterval = 0.1f;
 
     [Header("Player Settings")]
     [SerializeField] float speed = 5f;
@@ -20,7 +22,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundCheck;
 
+    [Header("Combat")]
+    [SerializeField] int maxHealth = 3;
+    [SerializeField] float knockbackForce = 8f;
+    [SerializeField] float invincibilityDuration = 3f;
+    private int currentHealth;
+    private bool isInvincible;
+
     private float horizontal;
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     private void FixedUpdate()
     {
@@ -70,4 +84,44 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    public void TakeDamage(Vector2 damageSourcePosition)
+    {
+        if (isInvincible) return;
+
+        currentHealth--;
+
+        Debug.Log("Player Hit! Health: " + currentHealth);
+
+        // Apply Knockback
+        Vector2 knockbackDirection = new Vector2(
+        transform.position.x > damageSourcePosition.x ? 1 : -1,
+            1f
+        ).normalized;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+    }
+
+    void Die()
+    {
+        Debug.Log("Player Died!");
+        // Disable movement
+        gameObject.SetActive(false);
+    }
 }
