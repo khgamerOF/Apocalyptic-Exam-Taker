@@ -2,7 +2,7 @@
 - Project name: hizmet-platformer
 - Unity version: Unity 6000.2.6f2
 - Active game object:
-  - Name: Hyades_0
-  - Tag: Untagged
+  - Name: Player
+  - Tag: Player
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

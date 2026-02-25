@@ -114,7 +114,21 @@ public class PlayerController : MonoBehaviour
     IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
-        yield return new WaitForSeconds(invincibilityDuration);
+
+        float elapsed = 0f;
+
+        while (elapsed < invincibilityDuration)
+        {
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(flashInterval);
+
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(flashInterval);
+
+            elapsed += flashInterval * 2;
+        }
+
+        spriteRenderer.enabled = true;
         isInvincible = false;
     }
 
