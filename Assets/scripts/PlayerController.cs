@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +32,10 @@ public class PlayerController : MonoBehaviour
     private bool isInvincible;
 
     private float horizontal;
+
+    [Header("Game Over")]
+    [SerializeField] GameObject gameOverText;
+    [SerializeField] float gameOverDelay = 3f;
 
     private void Start()
     {
@@ -135,7 +141,22 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Debug.Log("Player Died!");
-        // Disable movement
-        gameObject.SetActive(false);
+
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false; // stop physics
+
+        StartCoroutine(GameOverCoroutine());
+    }
+
+    IEnumerator GameOverCoroutine()
+    {
+        // Show Game Over text
+        gameOverText.SetActive(true);
+
+        // Wait 3 seconds
+        yield return new WaitForSeconds(gameOverDelay);
+
+        // Load Main Menu scene
+        SceneManager.LoadScene("main menu");
     }
 }
