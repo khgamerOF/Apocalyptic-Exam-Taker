@@ -37,9 +37,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject gameOverText;
     [SerializeField] float gameOverDelay = 3f;
 
+    [Header("Attack")]
+    [SerializeField] Transform attackPoint;
+    [SerializeField] float attackRange = 0.5f;
+    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] int attackDamage = 1;
+    [SerializeField] float attackCooldown = 0.3f;
+
+    private bool canAttack = true;
+
+    private bool isFacingRight = true;
+
     private void Start()
     {
         currentHealth = maxHealth;
+        Debug.Log("check messages");
     }
 
     private void FixedUpdate()
@@ -56,6 +68,15 @@ public class PlayerController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
+
+        if (horizontal > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (horizontal < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -87,6 +108,26 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded()
     {
         return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (!context.performed || !canAttack) return;
+
+        Debug.Log("ATTACK BUTTON PRESSED");
+
+        StartCoroutine(AttackCoroutine());
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+
+        Vector3 attackPos = attackPoint.localPosition;
+        attackPos.x *= -1;
+        attackPoint.localPosition = attackPos;
     }
     #endregion
 
@@ -158,5 +199,36 @@ public class PlayerController : MonoBehaviour
 
         // Load Main Menu scene
         SceneManager.LoadScene("main menu");
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        canAttack = false;
+
+        // Detect enemies in front
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRange,
+            enemyLayer
+        );
+
+        foreach (Collider2D enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>()?.TakeDamage(
+                attackDamage,
+                transform.position
+            );
+        }
+
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
