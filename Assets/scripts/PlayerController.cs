@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] int attackDamage = 1;
     [SerializeField] float attackCooldown = 0.3f;
+    [SerializeField] GameObject slashPrefab;
 
     private bool canAttack = true;
 
@@ -112,11 +113,27 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (!context.performed || !canAttack) return;
+        if (context.started && canAttack)
+        {
+            Debug.Log("ATTACK BUTTON PRESSED");
 
-        Debug.Log("ATTACK BUTTON PRESSED");
+            // Spawn slash
+            GameObject slash = Instantiate(
+                slashPrefab,
+                attackPoint.position,
+                Quaternion.identity
+            );
 
-        StartCoroutine(AttackCoroutine());
+            // Flip slash if facing left
+            if (!isFacingRight)
+            {
+                Vector3 scale = slash.transform.localScale;
+                scale.x *= -1;
+                slash.transform.localScale = scale;
+            }
+
+            StartCoroutine(AttackCoroutine());
+        }
     }
 
     void Flip()
