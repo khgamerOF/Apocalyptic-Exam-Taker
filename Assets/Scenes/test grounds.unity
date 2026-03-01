@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000e5f1d2c3
+  m_ApplyToSortingLayers: 00000000e5f1d2c36fcebfa9
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2813,6 +2813,7 @@ MonoBehaviour:
     m_Bits: 128
   attackDamage: 1
   attackCooldown: 0.3
+  slashPrefab: {fileID: 6935211585813835523, guid: 63d7abf1bda32d6419ec6d68c3799308, type: 3}
 --- !u!50 &1617653423
 Rigidbody2D:
   serializedVersion: 5
