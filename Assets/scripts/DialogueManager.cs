@@ -48,7 +48,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("GameplayScene");
+            SceneManager.LoadScene("test grounds");
         }
     }
 }
