@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float flashInterval = 0.1f;
+    [SerializeField] Animator animator;
 
     [Header("Player Settings")]
     [SerializeField] float speed = 5f;
@@ -65,6 +66,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
+        animator.SetBool("IsGrounded", isGrounded());
+        animator.SetBool("IsSprinting", isSprinting);
+    }
+
     #region PLAYER_CONTROLS
     public void Move(InputAction.CallbackContext context)
     {
@@ -116,7 +124,7 @@ public class PlayerController : MonoBehaviour
         if (context.started && canAttack)
         {
             Debug.Log("ATTACK BUTTON PRESSED");
-
+            animator.SetTrigger("Attack");
             // Spawn slash
             GameObject slash = Instantiate(
                 slashPrefab,
