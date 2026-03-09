@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float attackCooldown = 0.3f;
     [SerializeField] GameObject slashPrefab;
 
+    [Header("HUD")]
+    [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] GameObject healthUI;
+
     private bool canAttack = true;
 
     private bool isFacingRight = true;
@@ -53,7 +57,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        Debug.Log("check messages");
+        UpdateHealthUI();
+
     }
 
     private void FixedUpdate()
@@ -161,6 +166,7 @@ public class PlayerController : MonoBehaviour
         if (isInvincible) return;
 
         currentHealth--;
+        UpdateHealthUI();
 
         Debug.Log("Player Hit! Health: " + currentHealth);
 
@@ -206,6 +212,7 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
+        healthUI.SetActive(false);
         Debug.Log("Player Died!");
 
         rb.linearVelocity = Vector2.zero;
@@ -255,5 +262,10 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    void UpdateHealthUI()
+    {
+        healthText.text = currentHealth.ToString();
     }
 }
