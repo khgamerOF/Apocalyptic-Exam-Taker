@@ -2134,7 +2134,12 @@ MonoBehaviour:
     sword slash effect - SpikerMan - itch.io
 
     dialog
-    background 1 - Medhat Ayad - pexels'
+    background 1 - Medhat Ayad - pexels
+
+    scafholding - Ho88it - itch.io
+
+    fire
+    effect - Cartoon VFX by Wallcoeur - unity asset store'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
