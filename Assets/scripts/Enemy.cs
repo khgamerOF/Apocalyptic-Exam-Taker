@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float knockbackForce = 5f;
     [SerializeField] float invincibilityDuration = 1f;
 
+    private Animator animator;
+
     private int currentHealth;
     private bool isInvincible;
 
@@ -24,14 +26,25 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) < aggroRange)
+        float distance = Vector2.Distance(player.transform.position, transform.position);
+        if (distance < aggroRange)
         {
             Vector2 direction = (player.transform.position - transform.position).normalized;
+
             transform.Translate(new Vector2(direction.x, 0) * speed * Time.deltaTime);
+
+            animator.SetFloat("Speed", Mathf.Abs(direction.x));
+
+            Flip(direction.x);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0);
         }
     }
 
@@ -95,6 +108,18 @@ public class Enemy : MonoBehaviour
             {
                 player.TakeDamage(transform.position);
             }
+        }
+    }
+
+    void Flip(float directionX)
+    {
+        if (directionX > 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (directionX < 0)
+        {
+            spriteRenderer.flipX = false;
         }
     }
 }
