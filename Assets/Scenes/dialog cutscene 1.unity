@@ -862,34 +862,34 @@ MonoBehaviour:
       BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ! BUZZ!
       BUZZ! BUZZ!
     characterSprite: {fileID: -509507144782224570, guid: eac8d87607bd4a548a5c484ecd906b4d, type: 3}
-  - dialogueText: (you wake up to the sound of you anoying alarm clock reminding
-      you another day has come)
+  - dialogueText: (You wake up to the sound of your annoying alarmklok, reminding
+      you that another day has come)
     characterSprite: {fileID: -509507144782224570, guid: eac8d87607bd4a548a5c484ecd906b4d, type: 3}
-  - dialogueText: (you get out of bed brush your teath eat breakfast and turn on
-      the tv only for an alert to play)
+  - dialogueText: (You get out of bed, brush your teeth, eat breakfast and turn on
+      the TV, only for an alert to play.)
     characterSprite: {fileID: -509507144782224570, guid: eac8d87607bd4a548a5c484ecd906b4d, type: 3}
   - dialogueText: A message to all citizens of this city I wish I was joking when
-      I give you this new. But it seems the place you are all living in now has turned
-      into the ground zero for a zombie apolicps we advise you to stay indoors wait
-      for rescue to come
+      I give you this news. But it seems the place you are all living in has turned
+      into the ground zero for a zombie-apocalypse. We advise you to stay indoors
+      and wait for rescue to come.
     characterSprite: {fileID: -509507144782224570, guid: eac8d87607bd4a548a5c484ecd906b4d, type: 3}
-  - dialogueText: cool I always knew something like this would happon some day but
-      to be at the ground zero of it thats just awsome
+  - dialogueText: Cool I always knew something like this would happen someday, but
+      to be at the ground zero of it, that's just awesome.
     characterSprite: {fileID: 7124022817951173412, guid: 2ff5c35dd20bce440abaf38a0faa3fe5, type: 3}
-  - dialogueText: just wish it would have happoned after im done with school now
-      I still gotta do all that boring stuf
+  - dialogueText: Just wish it would have happened after I'm done with school. Now
+      I still gotta do all that boring stuff.
     characterSprite: {fileID: -137972784495506535, guid: f8d1d84a7c838ff479390f3e9b9008fd, type: 3}
-  - dialogueText: (you open your phone to check your messages and see the date)
+  - dialogueText: (You open your phone to check your messages and see the date.)
     characterSprite: {fileID: -509507144782224570, guid: eac8d87607bd4a548a5c484ecd906b4d, type: 3}
-  - dialogueText: ummmmm april 23 why does that ring a bell
+  - dialogueText: Ummmmm april 23, why does that ring a bell?
     characterSprite: {fileID: 5531456418504392448, guid: 601058c6a4ff5c14d905d2c80ffc939e, type: 3}
   - dialogueText: 
     characterSprite: {fileID: 1477306467657765337, guid: 978cba3492ef7f2438dd77799678bf25, type: 3}
-  - dialogueText: MY FINAL AND MOST IMPORTANT EXAM IS TODAY I HAVE TO LEAVE RIGHT
-      NOW OR I WONT MAKE IT
+  - dialogueText: MY FINAL AND MOST IMPORTANT EXAM IS TODAY. I HAVE TO LEAVE RIGHT
+      NOW OR I WON'T MAKE IT.
     characterSprite: {fileID: 1477306467657765337, guid: 978cba3492ef7f2438dd77799678bf25, type: 3}
-  - dialogueText: (and so the brave maby not so bright student left for the exam
-      building)
+  - dialogueText: (And so the brave, maybe not so bright, student left for the exam
+      building.)
     characterSprite: {fileID: -509507144782224570, guid: eac8d87607bd4a548a5c484ecd906b4d, type: 3}
 --- !u!1 &1977910550
 GameObject:
