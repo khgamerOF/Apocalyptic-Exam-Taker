@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] float damageCooldown = 1f;
+    float lastDamageTime;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -99,14 +102,19 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            if (player != null)
+            if (Time.time >= lastDamageTime + damageCooldown)
             {
-                player.TakeDamage(transform.position);
+                PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+
+                if (player != null)
+                {
+                    player.TakeDamage(transform.position);
+                    lastDamageTime = Time.time;
+                }
             }
         }
     }
